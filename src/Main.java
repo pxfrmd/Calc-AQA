@@ -2,15 +2,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        calc("5 - 10");
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+        calc(input);
     }
-    public static void calc (String input) {
+    public static String calc(String input) {
+
         int result = 0;
 
         String [] arr = input.split(" ");
 
         if (arr.length != 3) {
-            throw new RuntimeException();
+            throw new RuntimeException("Слишком много операторов");
         }
 
         int firstOperand = 0;
@@ -31,23 +34,15 @@ public class Main {
 
         testing(firstOperand,thirdOperand);
 
-        switch (secondOperand) {
-            case "/":
-                result = firstOperand / thirdOperand;
-                break;
-            case "+":
-                result = firstOperand + thirdOperand;
-                break;
-            case "-":
-                result = firstOperand - thirdOperand;
-                break;
-            case "*":
-                result = firstOperand * thirdOperand;
-                break;
-            default:
-                throw new RuntimeException();
-        }
-        System.out.println(result);
+        result = switch (secondOperand) {
+            case "/" -> firstOperand / thirdOperand;
+            case "+" -> firstOperand + thirdOperand;
+            case "-" -> firstOperand - thirdOperand;
+            case "*" -> firstOperand * thirdOperand;
+            default -> throw new RuntimeException();
+        };
+        System.out.println(Integer.toString(result));
+        return Integer.toString(result);
     }
 
     static void testing (int firstOperand, int thirdOperand) {
