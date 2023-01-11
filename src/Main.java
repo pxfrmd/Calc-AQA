@@ -39,7 +39,7 @@ public class Main {
             case "+" -> firstOperand + thirdOperand;
             case "-" -> firstOperand - thirdOperand;
             case "*" -> firstOperand * thirdOperand;
-            default -> throw new RuntimeException();
+            default -> throw new RuntimeException("Недопустимый оператор!");
         };
         System.out.println(Integer.toString(result));
         return Integer.toString(result);
@@ -47,7 +47,7 @@ public class Main {
 
     static void testing (int firstOperand, int thirdOperand) {
         if ( (firstOperand > 10 || firstOperand < 1 )|| (thirdOperand > 10 || thirdOperand < 1)) {
-            throw new RuntimeException();
+            throw new RuntimeException("Принимаются значения от 0 до 10 включительно!");
         }
     }
 }
